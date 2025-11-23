@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Navbar from "./components/navbar/navbar";
@@ -26,27 +26,25 @@ function App() {
   }, [selectedMovie]);
 
   useEffect(() => {
-    if (input && input.length > 2) {
-      const timer = setTimeout(() => {
-        axios
-          .get(`https://www.omdbapi.com/?s=${input}&apikey=82778cb5`)
-          .then(function (response) {
-            if (response.data.Search) {
-              setFilms(response.data.Search);
-            } else {
-              setFilms([]);
-            }
-          })
-          .catch((err) => {
-            console.log(err);
-            setFilms([]);
-          });
-      }, 500);
-
-      return () => clearTimeout(timer);
-    } else {
+    if (!input || input.length < 3) {
       setFilms([]);
+      return;
     }
+
+    const timer = setTimeout(async () => {
+      try {
+        const response = await axios.get(
+          `https://www.omdbapi.com/?s=${input}&apikey=82778cb5`
+        );
+
+        setFilms(response.data.Search || []);
+      } catch (error) {
+        console.error(error);
+        setFilms([]);
+      }
+    }, 500);
+
+    return () => clearTimeout(timer);
   }, [input]);
 
   const isHomePage = location.pathname === "/";
@@ -89,4 +87,4 @@ function App() {
   );
 }
 
-export default memo(App);
+export default App;
