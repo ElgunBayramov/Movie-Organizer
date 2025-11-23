@@ -1,6 +1,6 @@
 import React from "react";
-import SelectedFilm from "./selectedFilm";
 import { AiOutlineClose } from "react-icons/ai";
+import SelectedFilm from "./SelectedFilm.jsx";
 
 export default function SelectedMove({
   openBar,

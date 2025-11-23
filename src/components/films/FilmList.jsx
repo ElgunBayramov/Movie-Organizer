@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import AddMessage from "../films/AddMessage.jsx";
+import AddMessage from "./AddMessage.jsx";
 
 function FilmList({ films, setSelectedMovie, selectedMovie }) {
   const [message, setMessage] = useState(false);
