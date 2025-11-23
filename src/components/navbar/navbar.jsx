@@ -7,7 +7,7 @@ function Navbar({ setOpen, openBar }) {
     <div className="navbar" style={{ display: "block" }}>
       <div className="navbar-content">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <h1>MultiKino</h1>
+          <h1>MultiFilm</h1>
         </Link>
         <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
           <button className="menu-toggle" onClick={() => setOpen(!openBar)}>
