@@ -1,5 +1,7 @@
 import React from "react";
 
-export default function AddMessage() {
-  return <div className="toast-message">Film listeye eklendi!</div>;
+function AddMessage() {
+  return <div className="toast-message">Movie added to list!</div>;
 }
+
+export default AddMessage;

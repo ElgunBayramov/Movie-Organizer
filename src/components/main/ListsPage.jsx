@@ -1,26 +1,23 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 
-export default function ListsPage() {
+function ListsPage() {
   const { id } = useParams();
 
-  // Local storage'dan listeleri al
   const getLists = () => {
     return JSON.parse(localStorage.getItem("movieLists") || "[]");
   };
 
   const lists = getLists();
 
-  // Belirli bir listeyi sil
   const deleteList = (listId) => {
-    if (window.confirm("Bu listeyi silmek istediğinizden emin misiniz?")) {
+    if (window.confirm("Are you sure you want to delete this list?")) {
       const updatedLists = lists.filter((list) => list.id !== listId);
       localStorage.setItem("movieLists", JSON.stringify(updatedLists));
-      window.location.reload(); // Sayfayı yenile
+      window.location.reload();
     }
   };
 
-  // Eğer belirli bir liste ID'si varsa, sadece o listeyi göster
   if (id) {
     const currentList = lists.find((list) => list.id === id);
 
@@ -29,9 +26,9 @@ export default function ListsPage() {
         <div className="lists-page">
           <div className="main-container">
             <div className="page-header">
-              <h1 className="page-title">Liste Bulunamadı</h1>
+              <h1 className="page-title">List Not Found</h1>
               <Link to="/lists" className="back-btn">
-                Tüm Listelere Dön
+                Back to All Lists
               </Link>
             </div>
           </div>
@@ -50,13 +47,13 @@ export default function ListsPage() {
                 onClick={() => deleteList(currentList.id)}
                 style={{ background: "var(--danger)" }}
               >
-                Listeyi Sil
+                Delete List
               </button>
               <Link to="/lists" className="back-btn">
-                Tüm Listelere Dön
+                Back to All Lists
               </Link>
               <Link to="/" className="back-btn">
-                Ana Sayfa
+                Home Page
               </Link>
             </div>
           </div>
@@ -64,7 +61,7 @@ export default function ListsPage() {
           <div className="list-card">
             <div className="list-card-meta">
               {new Date(currentList.createdAt).toLocaleDateString("tr-TR")}{" "}
-              tarihinde oluşturuldu •{currentList.movies.length} film
+              created on •{currentList.movies.length} film
             </div>
 
             <div className="list-card-movies">
@@ -82,7 +79,7 @@ export default function ListsPage() {
                       fontSize: "0.8rem",
                     }}
                   >
-                    (IMDB'de görüntüle)
+                    (View on IMDB)
                   </a>
                 </div>
               ))}
@@ -93,14 +90,13 @@ export default function ListsPage() {
     );
   }
 
-  // Tüm listeleri göster
   return (
     <div className="lists-page">
       <div className="main-container">
         <div className="page-header">
-          <h1 className="page-title">Film Listelerim</h1>
+          <h1 className="page-title">My Movie Lists</h1>
           <Link to="/" className="back-btn">
-            Ana Sayfa
+            Home Page
           </Link>
         </div>
 
@@ -109,8 +105,8 @@ export default function ListsPage() {
             className="text-center"
             style={{ padding: "3rem", color: "var(--text-secondary)" }}
           >
-            <h3>Henüz hiç liste oluşturmadınız</h3>
-            <p>Ana sayfada film ekleyip liste oluşturabilirsiniz.</p>
+            <h3>You haven't created any lists yet</h3>
+            <p>You can add movies and create lists on the home page.</p>
             <Link
               to="/"
               className="view-list-btn"
@@ -120,7 +116,7 @@ export default function ListsPage() {
                 padding: "1rem 2rem",
               }}
             >
-              Ana Sayfaya Git
+              Go to Home Page
             </Link>
           </div>
         ) : (
@@ -144,7 +140,7 @@ export default function ListsPage() {
                   ))}
                   {list.movies.length > 3 && (
                     <div className="list-movie-item text-muted">
-                      ...ve {list.movies.length - 3} film daha
+                      ...and {list.movies.length - 3} one more film
                     </div>
                   )}
                 </div>
@@ -154,13 +150,13 @@ export default function ListsPage() {
                     to={`/list/${list.id}`}
                     className="list-action-btn view-list-btn-small"
                   >
-                    Listeyi Görüntüle
+                    View Details
                   </Link>
                   <button
                     className="list-action-btn delete-list-btn"
                     onClick={() => deleteList(list.id)}
                   >
-                    Sil
+                    Delete
                   </button>
                 </div>
               </div>
@@ -171,3 +167,5 @@ export default function ListsPage() {
     </div>
   );
 }
+
+export default ListsPage;

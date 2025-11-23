@@ -1,11 +1,11 @@
-import Navbar from "./components/navbar/navbar";
 import { memo, useEffect, useState } from "react";
 import axios from "axios";
-import FilmList from "./components/films/FilmList";
-import Search from "./components/main/Search";
 import { Route, Routes, useLocation } from "react-router-dom";
-import ListsPage from "./components/main/ListsPage";
+import Navbar from "./components/navbar/navbar";
+import Search from "./components/main/Search";
+import FilmList from "./components/films/FilmList";
 import SelectedMove from "./components/main/SelectedMove";
+import ListsPage from "./components/main/ListsPage";
 
 function App() {
   const [input, setInput] = useState("");
@@ -14,7 +14,6 @@ function App() {
   const [selectedMovie, setSelectedMovie] = useState([]);
   const location = useLocation();
 
-  // Local storage'dan seçili filmleri yükle
   useEffect(() => {
     const savedMovies = localStorage.getItem("selectedMovies");
     if (savedMovies) {
@@ -22,7 +21,6 @@ function App() {
     }
   }, []);
 
-  // Seçili filmler değiştiğinde local storage'a kaydet
   useEffect(() => {
     localStorage.setItem("selectedMovies", JSON.stringify(selectedMovie));
   }, [selectedMovie]);
@@ -51,7 +49,6 @@ function App() {
     }
   }, [input]);
 
-  // Ana sayfada mıyız kontrolü
   const isHomePage = location.pathname === "/";
 
   return (

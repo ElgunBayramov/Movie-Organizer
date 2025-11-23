@@ -1,13 +1,8 @@
 import React from "react";
 import { AiOutlineClose } from "react-icons/ai";
-import SelectedFilm from "./SelectedFilm.jsx";
+import SelectedFilm from "./selectedFilm";
 
-export default function SelectedMove({
-  openBar,
-  selectedMovie,
-  setSelectedMovie,
-  setOpen,
-}) {
+function SelectedMove({ openBar, selectedMovie, setSelectedMovie, setOpen }) {
   return (
     <>
       {/* Desktop Sidebar */}
@@ -35,3 +30,5 @@ export default function SelectedMove({
     </>
   );
 }
+
+export default SelectedMove;

@@ -2,7 +2,7 @@ import React from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
-export default function Navbar({ setOpen, openBar }) {
+function Navbar({ setOpen, openBar }) {
   return (
     <div className="navbar" style={{ display: "block" }}>
       <div className="navbar-content">
@@ -18,3 +18,5 @@ export default function Navbar({ setOpen, openBar }) {
     </div>
   );
 }
+
+export default Navbar;

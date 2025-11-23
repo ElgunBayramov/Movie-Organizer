@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import AddMessage from "./AddMessage.jsx";
+import AddMessage from "./AddMessage";
 
 function FilmList({ films, setSelectedMovie, selectedMovie }) {
   const [message, setMessage] = useState(false);
@@ -39,8 +39,8 @@ function FilmList({ films, setSelectedMovie, selectedMovie }) {
             <div className="movie-info">
               <h3 className="movie-title-card">{film.Title}</h3>
               <div className="movie-details">
-                <span>Yıl: {film.Year}</span>
-                <span>Tür: {film.Type}</span>
+                <span>Year: {film.Year}</span>
+                <span>Type: {film.Type}</span>
               </div>
               <button
                 className="add-to-list-btn"
@@ -50,8 +50,8 @@ function FilmList({ films, setSelectedMovie, selectedMovie }) {
                 )}
               >
                 {selectedMovie.some((movie) => movie.imdbID === film.imdbID)
-                  ? "Listede Var"
-                  : "Listeye Ekle"}
+                  ? "Added"
+                  : "Add to My List"}
               </button>
             </div>
           </div>

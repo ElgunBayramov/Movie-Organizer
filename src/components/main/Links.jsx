@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 
-export default function Links() {
+function Links() {
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -21,9 +21,9 @@ export default function Links() {
       <div className="lists-page">
         <div className="container">
           <div className="page-header">
-            <h1>Liste Bulunamadı</h1>
+            <h1>List Not Found</h1>
             <button onClick={handleBack} className="back-btn">
-              Ana Sayfaya Dön
+              Return to Home Page
             </button>
           </div>
         </div>
@@ -37,12 +37,12 @@ export default function Links() {
         <div className="page-header">
           <h1>{currentList.title}</h1>
           <button onClick={handleBack} className="back-btn">
-            Ana Sayfaya Dön
+            Return to Home Page
           </button>
         </div>
 
         <div className="movie-lists">
-          <h3 className="mb-3">Listedeki Filmler:</h3>
+          <h3 className="mb-3">Movies on the List:</h3>
           {currentList.movies.map((movie) => (
             <div key={movie.imdbID} className="movie-list-item">
               <a
@@ -51,7 +51,7 @@ export default function Links() {
                 rel="noopener noreferrer"
                 className="movie-link"
               >
-                {movie.Title} ({movie.Year}) - IMDB'de aç
+                {movie.Title} ({movie.Year}) - Open on IMDB
               </a>
             </div>
           ))}
@@ -60,3 +60,5 @@ export default function Links() {
     </div>
   );
 }
+
+export default Links;
